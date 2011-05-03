@@ -1,3 +1,11 @@
+/*
+ * @package node-sftp
+ * @subpackage test
+ * @copyright Copyright (C) 2011 Ajax.org. All rights reserved.
+ * @author Mike de Boer <mike AT ajax DOT org>
+ * @license Commercial.
+ */
+
 var assert = require("assert");
 var sftp = require("./../lib/index");
 var fs = require("fs");
@@ -15,11 +23,12 @@ module.exports = {
     
     tearDown : function(next) {
         if (this.obj)
-            this.obj.disconnect(function() {});
-        next();
+            this.obj.disconnect(next);
+        else
+            next();
     },
     
-    "<test connection to localhost": function(next) {
+    "test connection to localhost": function(next) {
         var obj = this.obj  = new sftp({username: "mike", password: "mike1324"});
         obj.connect(function(err) {
             assert.equal(err, null);
@@ -27,7 +36,7 @@ module.exports = {
         });
     },
     
-    "<test connection to localhost with private key file": function(next) {
+    "test connection to localhost with private key file": function(next) {
         var obj = this.obj  = new sftp({host: host, username: "cloud9", privateKey: "~/.ssh/id_rsa"});
         obj.connect(function(err) {
             assert.equal(err, null);
@@ -35,7 +44,7 @@ module.exports = {
         });
     },
     
-    "<test connection to localhost with private key plain text": function(next) {
+    "test connection to localhost with private key plain text": function(next) {
         var _self = this;
         fs.readFile("~/.ssh/id_rsa".replace("~", process.env.HOME), "utf8", function(err, data) {
             if (err)
@@ -48,7 +57,7 @@ module.exports = {
         });
     },
     
-    "<test sending PWD command to localhost": function(next) {
+    "test sending PWD command to localhost": function(next) {
         var obj = this.obj  = new sftp({host: host, username: "cloud9", privateKey: "~/.ssh/id_rsa"});
         obj.connect(function(err) {
             assert.equal(err, null);
@@ -61,7 +70,7 @@ module.exports = {
         });
     },
     
-    "<test sending BYE command to localhost": function(next) {
+    "test sending BYE command to localhost": function(next) {
         var obj = new sftp({host: host, username: "cloud9", privateKey: "~/.ssh/id_rsa"});
         obj.connect(function(err) {
             assert.equal(err, null);
@@ -73,7 +82,7 @@ module.exports = {
         });
     },
 
-    "<test sending LS command to localhost": function(next) {
+    "test sending LS command to localhost": function(next) {
         var obj = this.obj = new sftp({host: host, home: "/home/cloud9", username: "cloud9", privateKey: "~/.ssh/id_rsa"});
         obj.connect(function(err) {
             assert.equal(err, null);
@@ -86,7 +95,7 @@ module.exports = {
         });
     },
     
-    "<test sending CD command to localhost": function(next) {
+    "test sending CD command to localhost": function(next) {
         var obj = this.obj  = new sftp({host: host, username: "cloud9", privateKey: "~/.ssh/id_rsa"});
         obj.connect(function(err) {
             assert.equal(err, null);

@@ -1,3 +1,12 @@
+/*
+ * @package node-sftp
+ * @subpackage test
+ * @copyright Copyright (C) 2011 Ajax.org. All rights reserved.
+ * @author Fabian Jakobs <fabian AT ajax DOT org>
+ * @author Mike de Boer <mike AT ajax DOT org>
+ * @license Commercial.
+ */
+
 var assert = require("assert");
 var ssh = require("./../lib/ssh");
 
