@@ -58,16 +58,14 @@ module.exports = {
     },
     
     "<test connection to localhost": function(next) {
-        var obj = this.obj  = new sftp({username: "mike", password: "mike1324"});
-        obj.connect(function(err) {
+        var obj = this.obj  = new sftp({username: "mike", password: "mike1324"}, function(err) {
             assert.equal(err, null);
             next();
         });
     },
     
-    "<test connection to host with private key file": function(next) {
-        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: "~/.ssh/id_rsa"});
-        obj.connect(function(err) {
+    "test connection to host with private key file": function(next) {
+        var obj = this.obj  = new sftp({host: "localhost", username: "mike", privateKey: "~/.ssh/id_rsa"}, function(err) {
             assert.equal(err, null);
             next();
         });
@@ -75,29 +73,26 @@ module.exports = {
     
     "test connection to host with private key plain text": function(next) {
         var _self = this;
-        var obj = _self.obj = new sftp({host: host, username: "sshtest", privateKey: prvkey});
-        obj.connect(function(err) {
+        var obj = _self.obj = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
             assert.equal(err, null);
             next();
         });
     },
     
-    "test sending PWD command to localhost": function(next) {
-        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey});
-        obj.connect(function(err) {
+    "test connection to host with home dir set": function(next) {
+        var _self = this;
+        var obj = _self.obj = new sftp({host: host, username: "sshtest", home: "/home/sshtest", privateKey: prvkey}, function(err) {
             assert.equal(err, null);
-            // exec command:
-            obj.pwd(function(err, dir) {
+            obj.pwd(function(err, path) {
                 assert.equal(err, null);
-                assert.equal(dir, "/home/cloud9");
+                assert.equal(path, "/home/sshtest");
                 next();
             });
         });
     },
     
-    "test sending BYE command to localhost": function(next) {
-        var obj = new sftp({host: host, username: "sshtest", privateKey: prvkey});
-        obj.connect(function(err) {
+    "test disconnecting from remote host": function(next) {
+        var obj = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
             assert.equal(err, null);
             // exec command:
             obj.disconnect(function(err) {
@@ -107,22 +102,8 @@ module.exports = {
         });
     },
 
-    ">test sending LS command to localhost": function(next) {
-        var obj = this.obj = new sftp({host: host, home: "/home/sshtest", username: "sshtest", privateKey: prvkey});
-        obj.connect(function(err) {
-            assert.equal(err, null);
-            // exec command:
-            obj.ls("c9", function(err, res) {
-                assert.equal(err, null);
-                assert.equal(res[0].path, "c9/.git");
-                next();
-            });
-        });
-    },
-    
     "test sending CD command to localhost": function(next) {
-        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey});
-        obj.connect(function(err) {
+        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
             assert.equal(err, null);
             // exec command:
             obj.cd("c9/server/c9/db", function(err) {
@@ -137,46 +118,192 @@ module.exports = {
         });
     },
     
-    // @todo: add tests for chgrp, chmod and chown
-    
-    "test sending GET command to localhost for non-existing file": function(next) {
-        var obj = this.obj = new sftp({host: host, home: "/home/sshtest", username: "sshtest", privateKey: prvkey});
-        var file = "/tmp/testsftpget";
-        obj.connect(function(err) {
+    "test readFile() for non-existing file": function(next) {
+        var obj = this.obj = new sftp({host: host, home: "/home/sshtest", username: "sshtest", privateKey: prvkey}, function(err) {
+            var file = "/tmp/testsftpget";
             assert.equal(err, null);
             // exec command:
             try {
                 fs.unlinkSync(file);
             }
             catch (ex) {}
-            obj.get(".xxxprofile", file, function(err, res) {
-                assert.equal(err, "Couldn't stat remote file: No such file or directory\r\nFile \"/home/sshtest/.xxxprofile\" not found.\r\n");
-                assert.equal(res, file);
-                assert.ok(!path.existsSync("/tmp/testsftpget"));
+            obj.readFile(".xxxprofile", "utf8", function(err, data) {
+                assert.equal(err, "Couldn't stat remote file: No such file or directory");
+                assert.equal(data, null);
                 next();
             });
         });
     },
     
-    "test sending GET command to localhost": function(next) {
-        var obj = this.obj = new sftp({host: host, home: "/home/sshtest", username: "sshtest", privateKey: prvkey/*"~/.ssh/id_rsa"*/});
-        var file = "/tmp/testsftpget";
-        obj.connect(function(err) {
+    "test readFile() for existing file in UTF8": function(next) {
+        var obj = this.obj = new sftp({host: host, home: "/home/sshtest", username: "sshtest", privateKey: prvkey/*"~/.ssh/id_rsa"*/}, function(err) {
             assert.equal(err, null);
-            // exec command:
-            try {
-                fs.unlinkSync(file);
-            }
-            catch (ex) {}
-            obj.get(".profile", file, function(err, res) {
+
+            obj.readFile(".profile", "utf8", function(err, data) {
                 assert.equal(err, null);
-                assert.equal(res, file);
-                assert.ok(path.existsSync("/tmp/testsftpget"));
-                fs.unlinkSync(file);
+                assert.ok(data.indexOf("PATH=") > -1);
                 next();
             });
         });
-    }
+    },
+    
+    "test readFile() for existing file in BUFFER": function(next) {
+        var obj = this.obj = new sftp({host: host, home: "/home/sshtest", username: "sshtest", privateKey: prvkey/*"~/.ssh/id_rsa"*/}, function(err) {
+            assert.equal(err, null);
+
+            obj.readFile(".profile", null, function(err, data) {
+                assert.equal(err, null);
+                assert.ok(Buffer.isBuffer(data));
+                assert.ok(data.toString("utf8").indexOf("PATH=") > -1);
+                next();
+            });
+        });
+    },
+    
+    "test readdir() for non-existing directory": function(next) {
+        var obj = this.obj = new sftp({host: host, home: "/home/sshtest", username: "sshtest", privateKey: prvkey}, function(err) {
+            assert.equal(err, null);
+            // exec command:
+            obj.readdir("c9", function(err, res) {
+                assert.equal(err, "Couldn't stat remote file: No such file or directory");
+                next();
+            });
+        });
+    },
+    
+    "test readdir() for existing directory": function(next) {
+        var obj = this.obj = new sftp({host: host, home: "/home/sshtest", username: "sshtest", privateKey: prvkey}, function(err) {
+            assert.equal(err, null);
+            // exec command:
+            obj.readdir("/home/sshtest", function(err, res) {
+                assert.equal(err, null);
+                assert.equal(res[0], ".bash_history");
+                next();
+            });
+        });
+    },
+    
+    "test sending PWD command to localhost": function(next) {
+        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
+            assert.equal(err, null);
+            // exec command:
+            obj.pwd(function(err, dir) {
+                assert.equal(err, null);
+                assert.equal(dir, "/home/sshtest");
+                next();
+            });
+        });
+    },
+    
+    "test stat for new non-empty file": function(next) {
+        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
+            assert.equal(err, null);
+            var file = __dirname + "/fixtures/a.js";
+            obj.writeFile("a.js", fs.readFileSync(file, "utf8"), null, function(err) {
+                assert.equal(err, null);
+                obj.stat("a.js", function(err, stat) {
+                    assert.equal(fs.statSync(file).size, stat.size);
+                    assert.ok(stat.isFile());
+                    assert.ok(!stat.isDirectory());
+                    obj.unlink("a.js", next);
+                });
+            });
+        });
+    },
+    
+    "test stat for new empty file": function(next) {
+        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
+            assert.equal(err, null);
+            var file = __dirname + "/fixtures/empty.txt";
+            obj.writeFile("empty.txt", fs.readFileSync(file), null, function(err) {
+                assert.equal(err, null);
+                obj.stat("empty.txt", function(err, stat) {
+                    assert.equal(err, null);
+                    assert.equal(fs.statSync(file).size, stat.size);
+                    assert.ok(stat.isFile());
+                    assert.ok(!stat.isDirectory());
+                    obj.unlink("a.js", next);
+                });
+            });
+        });
+    },
+    
+    "test unlinking new file": function(next) {
+        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
+            assert.equal(err, null);
+            var file = __dirname + "/fixtures/a.js";
+            obj.writeFile("a.js", fs.readFileSync(file, "utf8"), null, function(err) {
+                assert.equal(err, null);
+                obj.unlink("a.js", function(err) {
+                    assert.equal(err, null);
+                    obj.stat("a.js", function(err, stat) {
+                        assert.equal(err, "Couldn't stat remote file: No such file or directory");
+                        next();
+                    });
+                });
+            });
+        });
+    },
+    
+    "test unlinking non-existing file": function(next) {
+        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
+            assert.equal(err, null);
+            obj.unlink("youdonotexists.xxx", function(err) {
+                assert.equal(err, "Couldn't delete file: No such file or directory");
+                next();
+            });
+        });
+    },
+    
+    "test renaming new file": function(next) {
+        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
+            assert.equal(err, null);
+            var file = __dirname + "/fixtures/a.js";
+            obj.writeFile("a.js", fs.readFileSync(file, "utf8"), null, function(err) {
+                assert.equal(err, null);
+                obj.rename("a.js", "b.js", function(err) {
+                    assert.equal(err, null);
+                    obj.stat("b.js", function(err, stat) {
+                        assert.equal(err, null);
+                        assert.equal(fs.statSync(file).size, stat.size);
+                        assert.ok(stat.isFile());
+                        assert.ok(!stat.isDirectory());
+                        obj.unlink("b.js", next);
+                    });
+                });
+            });
+        });
+    },
+    
+    "test renaming non-existing file": function(next) {
+        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
+            assert.equal(err, null);
+            obj.rename("youdonotexists.xxx", "b.js", function(err) {
+                assert.equal(err, "Couldn't rename file \"/home/sshtest/youdonotexists.xxx\" to \"/home/sshtest/b.js\": No such file or directory");
+                next();
+            });
+        });
+    },
+    
+    ">test chmod-ing new file": function(next) {
+        var obj = this.obj  = new sftp({host: host, username: "sshtest", privateKey: prvkey}, function(err) {
+            assert.equal(err, null);
+            var file = __dirname + "/fixtures/a.js";
+            obj.writeFile("a.js", fs.readFileSync(file, "utf8"), null, function(err) {
+                assert.equal(err, null);
+                obj.chmod("a.js", 0766, function(err) {
+                    assert.equal(err, null);
+                    obj.stat("a.js", function(err, stat) {
+                        assert.equal(err, null);
+                        assert.equal(stat.mode, 766);
+                        assert.ok(stat.isFile());
+                        assert.ok(!stat.isDirectory());
+                        obj.unlink("a.js", next);
+                    });
+                });
+            });
+        });
+    },
 }
 
-!module.parent && require("./../../cloud9/support/asyncjs/lib/test").testcase(module.exports, "SFTP").exec();
+!module.parent && require("./../../async.js/lib/test").testcase(module.exports, "SFTP", 5000).exec();

@@ -92,4 +92,4 @@ module.exports = {
     }
 }
 
-!module.parent && require("./../../cloud9/support/asyncjs/lib/test").testcase(module.exports, "SSH Env").exec();
+!module.parent && require("./../../async.js/lib/test").testcase(module.exports, "SSH Env").exec();
