@@ -1,9 +1,9 @@
-/*
+/**
  * @package node-sftp
  * @subpackage test
- * @copyright Copyright (C) 2011 Ajax.org. All rights reserved.
+ * @copyright  Copyright(c) 2011 Ajax.org B.V. <info AT ajax.org>
  * @author Mike de Boer <mike AT ajax DOT org>
- * @license Commercial.
+ * @license http://github.com/ajaxorg/node-sftp/blob/master/LICENSE MIT License
  */
 
 var assert = require("assert");
