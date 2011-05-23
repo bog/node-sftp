@@ -1,0 +1,1807 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="utf-8"></meta>
+		<meta name="generator" content="JsDoc Toolkit"></meta>
+		<title>Sftp | JsDoc Reference</title>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"></meta>
+		<meta name="mobileoptimized" content="0"></meta>
+	
+		<link rel="stylesheet" href="../css/all.css" media="all"></link>
+		<link rel="stylesheet" href="../css/handheld.css" media="only screen and (max-width: 660px)"></link>
+		<link rel="stylesheet" href="../css/handheld.css" media="handheld"></link>
+		<link rel="stylesheet" href="../css/screen.css" media="screen and (min-width: 661px)"></link>
+
+		<script src="../javascript/all.js"></script>
+		<!--[if lt IE 9]>
+			<script src="../javascript/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+<div class="index">
+	<div class="menu">
+		<div class="indexLinks">
+			<a href="../index.html">Classes</a>
+			<a href="../files.html">Files</a>
+		</div>
+	
+		<h2 class="heading1">Classes</h2>
+		
+		<input type="text" name="classFilter" class="classFilter" id="ClassFilter" placeholder="Filter"></input>
+		
+		<nav>
+			<ul class="classList" id="ClassList">
+				
+					<li><a href="../symbols/_global_.html">_global_</a></li>
+				
+					<li><a href="../symbols/Sftp.html">Sftp</a></li>
+				
+					<li><a href="../symbols/Sftp.Stat.html">Sftp<span class='break'> </span>.<span class='break'> </span>Stat</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	<div class="fineprint" style="clear:both">
+		
+		Documentation generator: <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0<br />
+		Template: <a href="http://www.thebrightlines.com/2010/05/06/new-template-for-jsdoctoolkit-codeview/" target="_blank">Codeview</a> 1.2<br />
+		Generated on: 2011-4-23 9:57
+	</div>
+</div>
+
+<div class="index indexStatic"></div>
+
+<div class="content">
+	<div class="innerContent">
+		<h1 class="classTitle">
+			
+			Class <span>Sftp</span>
+		</h1>
+		
+		<div class="intro">
+			<p class="description summary">
+				Sftp object
+			</p>
+				
+			
+				<ul class="summary">
+					
+					
+					
+						<li>Defined in: <a href="../symbols/src/jsDAV_support_node-sftp_lib_sftp.js.html">sftp.js</a></li>
+					
+						<li>Extends <span class="fixedFont">
+						events.EventEmitter</span></li>
+					
+				</ul>
+			
+		</div>
+		
+		
+			<div class="props">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class Sftp.">
+					<caption class="sectionTitle">Class Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Constructor Attributes</th>
+							<th scope="col">Constructor Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription" >
+								<div class="fixedFont">
+									<b><a href="../symbols/Sftp.html#constructor">Sftp</a></b>(options, cbconnect)
+								</div>
+								<div class="description"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		
+		
+		
+			
+			
+				<div class="props">
+					<table class="summaryTable" cellspacing="0" summary="A summary of the fields documented in the class Sftp.">
+						<caption class="sectionTitle">Field Summary</caption>
+						
+						<thead>
+							<tr>
+								<th scope="col">Field Attributes</th>
+								<th scope="col">Field Name and Description</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/Sftp.html#activeBuffer">activeBuffer</a></b>
+										</div>
+										<div class="description">buffer that contains the output of the active Sftp command</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/Sftp.html#callbacks">callbacks</a></b>
+										</div>
+										<div class="description">hashmap that contains callbacks for all Sftp commands</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/Sftp.html#cmdOptions">cmdOptions</a></b>
+										</div>
+										<div class="description">list of options per Sftp command, fetched from the output of the help command</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/Sftp.html#queue">queue</a></b>
+										</div>
+										<div class="description">simple FIFO queue for commands to hold until (re)connection</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										<b><a href="../symbols/Sftp.html#state">state</a></b>
+										</div>
+										<div class="description">state the Sftp instance is in</div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										Sftp.<b><a href="../symbols/Sftp.html#.STATE_CONNECTED">STATE_CONNECTED</a></b>
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										Sftp.<b><a href="../symbols/Sftp.html#.STATE_CONNECTING">STATE_CONNECTING</a></b>
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+								<tr>
+									<td class="attributes">&lt;static&gt; &lt;constant&gt; &nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont">
+										Sftp.<b><a href="../symbols/Sftp.html#.STATE_DISCONNECTED">STATE_DISCONNECTED</a></b>
+										</div>
+										<div class="description"></div>
+									</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			
+			
+			
+		
+<!--
+#### METHODS SUMMARY
+-->
+		
+			
+			
+			<div class="props">
+				<h2 class="sectionTitle">Method Summary</h2>
+				
+				
+					<table class="summaryTable" id="MethodsList" cellspacing="0" summary="A summary of the methods documented in the class Sftp.">
+						<thead>
+							<tr>
+								<th scope="col">Method Attributes</th>
+								<th scope="col">Method Name and Description</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							
+							
+								<tr
+									 class='item0'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#cd">cd</a></b>(path, cbcd)
+										</div>
+										<div class="description">Change directory</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item1'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#chmod">chmod</a></b>(path, mode, callback)
+										</div>
+										<div class="description">Asynchronous chmod(2).</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item2'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#chown">chown</a></b>(path, own, callback)
+										</div>
+										<div class="description">Asynchronous chown(2).</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item3'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#connect">connect</a></b>(cbconnect)
+										</div>
+										<div class="description">Setup an Sftp connection to a remote host</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item4'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#disconnect">disconnect</a></b>(cbdisconn)
+										</div>
+										<div class="description">Destroy an existing connection to remote host</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item5'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#exec">exec</a></b>(type, cmd, cbexec, cbprogress)
+										</div>
+										<div class="description">Prepare an Sftp command to be sent to the remote host</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item6'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#fstat">fstat</a></b>()
+										</div>
+										<div class="description">Alias of <a href="../symbols/Sftp.html#stat">Sftp#stat</a></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item7'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#lstat">lstat</a></b>()
+										</div>
+										<div class="description">Alias of <a href="../symbols/Sftp.html#stat">Sftp#stat</a></div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item8'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#mkdir">mkdir</a></b>(path, mode, callback)
+										</div>
+										<div class="description">Asynchronous mkdir(2).</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item9'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#pwd">pwd</a></b>(callback)
+										</div>
+										<div class="description">Asynchronous pwd(1).</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item10'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#readdir">readdir</a></b>(path, callback)
+										</div>
+										<div class="description">Asynchronous readdir(3).</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item11'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#readFile">readFile</a></b>(filename, encoding, callback)
+										</div>
+										<div class="description">Asynchronously reads the entire contents of a file.</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item12'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#rename">rename</a></b>(path1, path2, callback)
+										</div>
+										<div class="description">Asynchronous rename(2).</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item13'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#rmdir">rmdir</a></b>(path, callback)
+										</div>
+										<div class="description">Asynchronous rmdir(2).</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item14'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#stat">stat</a></b>(path, callback)
+										</div>
+										<div class="description">Asynchronous lstat(2).</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item15'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#symlink">symlink</a></b>(linkdata, path, callback)
+										</div>
+										<div class="description">Asynchronous symlink(2).</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item16'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#unlink">unlink</a></b>(path, callback)
+										</div>
+										<div class="description">Asynchronous unlink(2).</div>
+									</td>
+								</tr>
+							
+								<tr
+									 class='item17'
+								>
+									<td class="attributes">&nbsp;</td>
+									<td class="nameDescription">
+										<div class="fixedFont"><b><a href="../symbols/Sftp.html#writeFile">writeFile</a></b>(filename, data, encoding, callback)
+										</div>
+										<div class="description">Asynchronously writes data to a file.</div>
+									</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				
+			
+				
+			</div>
+		
+		
+<!--
+#### EVENTS SUMMARY
+-->
+		
+			
+			
+			<div class="props">
+				<table class="summaryTable" cellspacing="0" summary="A summary of the events documented in the class Sftp.">
+					<caption class="sectionTitle">Event Summary</caption>
+					
+					<thead>
+						<tr>
+							<th scope="col">Event Attributes</th>
+							<th scope="col">Event Name and Description</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						
+							<tr>
+								<td class="attributes">&lt;static&gt; &nbsp;</td>
+								<td class="nameDescription">
+									<div class="fixedFont">Sftp.<b><a href="../symbols/Sftp.html#.event:connect">connect</a></b>()
+									</div>
+									<div class="description"></div>
+								</td>
+							</tr>
+						
+							<tr>
+								<td class="attributes">&lt;static&gt; &nbsp;</td>
+								<td class="nameDescription">
+									<div class="fixedFont">Sftp.<b><a href="../symbols/Sftp.html#.event:data">data</a></b>(e)
+									</div>
+									<div class="description"></div>
+								</td>
+							</tr>
+						
+							<tr>
+								<td class="attributes">&lt;static&gt; &nbsp;</td>
+								<td class="nameDescription">
+									<div class="fixedFont">Sftp.<b><a href="../symbols/Sftp.html#.event:disconnect">disconnect</a></b>()
+									</div>
+									<div class="description"></div>
+								</td>
+							</tr>
+						
+							<tr>
+								<td class="attributes">&lt;static&gt; &nbsp;</td>
+								<td class="nameDescription">
+									<div class="fixedFont">Sftp.<b><a href="../symbols/Sftp.html#.event:ready">ready</a></b>()
+									</div>
+									<div class="description"></div>
+								</td>
+							</tr>
+						
+					</tbody>
+				</table>
+			</div>
+			
+			
+			
+		
+<!--
+#### CONSTRUCTOR DETAILS
+-->
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle" id="constructor">
+						Class Detail
+					</h2>
+					
+					<div class="fixedFont">
+						<b>Sftp</b>(options, cbconnect)
+					</div>
+					
+					<div class="description">
+						
+						
+					</div>
+					
+					
+				
+					
+						<dl class="detailList params">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span>  <b>options</b>
+									
+								</dt>
+								<dd>that contain all the info required 
+                                             to setup a connection
+                                             to a remote server. Structure:</dd>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span>  <b>options.username</b>
+									
+								</dt>
+								<dd>Username on remote host.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span>  <b>options.password</b>
+									<i>Optional</i>
+								</dt>
+								<dd>Password on remote host, not required if private key is provided.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span>  <b>options.privateKey</b>
+									<i>Optional</i>
+								</dt>
+								<dd>Private key for username, not required if password is provided.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span>  <b>options.host</b>
+									<i>Optional, Default: "localhost"</i>
+								</dt>
+								<dd>Hostname or IP to connect to. Default: 'localhost'</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span>  <b>options.port</b>
+									<i>Optional, Default: 22</i>
+								</dt>
+								<dd>SSH Port number. Default: 22</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span>  <b>options.timeout</b>
+									<i>Optional, Default: 10000</i>
+								</dt>
+								<dd>Inactivity timeout in milliseconds. Default: 10000ms</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Boolean}</span>  <b>options.autoconnect</b>
+									<i>Optional, Default: true</i>
+								</dt>
+								<dd>Connect on instantiation. Default: true</dd>
+							
+								<dt>
+									<span class="light fixedFont">{String}</span>  <b>options.exec</b>
+									<i>Optional</i>
+								</dt>
+								<dd>Command to be executed right after a connection is established.</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span>  <b>cbconnect</b>
+									<i>Optional</i>
+								</dt>
+								<dd>callback to invoke right after a connection is established.</dd>
+							
+						</dl>
+					
+					
+					
+				</div>
+			</div>
+		
+<!--
+#### FIELD DETAILS
+-->
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle">
+						Field Detail
+					</h2>
+					
+					
+						<div class="fixedFont heading" id="activeBuffer">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{String}</span>
+							
+							<b>activeBuffer</b>							
+						</div>
+						
+						<div class="description">
+							buffer that contains the output of the active Sftp command
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="callbacks">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{Object}</span>
+							
+							<b>callbacks</b>							
+						</div>
+						
+						<div class="description">
+							hashmap that contains callbacks for all Sftp commands
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="cmdOptions">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{Object}</span>
+							
+							<b>cmdOptions</b>							
+						</div>
+						
+						<div class="description">
+							list of options per Sftp command, fetched from the output of the help command
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="queue">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{Array}</span>
+							
+							<b>queue</b>							
+						</div>
+						
+						<div class="description">
+							simple FIFO queue for commands to hold until (re)connection
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="state">
+							<span class='lighter'>
+							
+							</span>
+							
+							<span class="light">{Number}</span>
+							
+							<b>state</b>							
+						</div>
+						
+						<div class="description">
+							state the Sftp instance is in
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id=".STATE_CONNECTED">
+							<span class='lighter'>
+							&lt;static&gt; &lt;constant&gt; 
+							</span>
+							
+							
+							
+							<span class="light">Sftp.</span><b>STATE_CONNECTED</b>							
+						</div>
+						
+						<div class="description">
+							
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id=".STATE_CONNECTING">
+							<span class='lighter'>
+							&lt;static&gt; &lt;constant&gt; 
+							</span>
+							
+							
+							
+							<span class="light">Sftp.</span><b>STATE_CONNECTING</b>							
+						</div>
+						
+						<div class="description">
+							
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id=".STATE_DISCONNECTED">
+							<span class='lighter'>
+							&lt;static&gt; &lt;constant&gt; 
+							</span>
+							
+							
+							
+							<span class="light">Sftp.</span><b>STATE_DISCONNECTED</b>							
+						</div>
+						
+						<div class="description">
+							
+							
+							
+							
+						</div>
+						
+						
+							
+						
+						
+					
+				</div>
+			</div>
+		
+<!--
+#### METHOD DETAILS
+-->		
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle">
+						Method Detail
+					</h2>
+					
+					<ul class="methodDetail" id="MethodDetail">
+						
+						
+							<li 
+								 class='item0'
+							>
+								<div class="fixedFont heading" id="cd">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>cd</b>(path, cbcd)
+								</div>
+								
+								<div class="description">
+									Change directory
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>cbcd</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item1'
+							>
+								<div class="fixedFont heading" id="chmod">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>chmod</b>(path, mode, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronous chmod(2). No arguments other than a possible exception are 
+given to the completion callback.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{String|octal}</span> <b>mode</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item2'
+							>
+								<div class="fixedFont heading" id="chown">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>chown</b>(path, own, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronous chown(2). No arguments other than a possible exception are 
+given to the completion callback.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>own</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item3'
+							>
+								<div class="fixedFont heading" id="connect">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>connect</b>(cbconnect)
+								</div>
+								
+								<div class="description">
+									Setup an Sftp connection to a remote host
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>cbconnect</b>
+												
+											</dt>
+											<dd>callback to invoke right after a connection is established.</dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item4'
+							>
+								<div class="fixedFont heading" id="disconnect">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>disconnect</b>(cbdisconn)
+								</div>
+								
+								<div class="description">
+									Destroy an existing connection to remote host
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>cbdisconn</b>
+												
+											</dt>
+											<dd>callback to invoke right after the client disconnected</dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item5'
+							>
+								<div class="fixedFont heading" id="exec">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>exec</b>(type, cmd, cbexec, cbprogress)
+								</div>
+								
+								<div class="description">
+									Prepare an Sftp command to be sent to the remote host
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>type</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>cmd</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>cbexec</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>cbprogress</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item6'
+							>
+								<div class="fixedFont heading" id="fstat">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>fstat</b>()
+								</div>
+								
+								<div class="description">
+									Alias of <a href="../symbols/Sftp.html#stat">Sftp#stat</a>
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item7'
+							>
+								<div class="fixedFont heading" id="lstat">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>lstat</b>()
+								</div>
+								
+								<div class="description">
+									Alias of <a href="../symbols/Sftp.html#stat">Sftp#stat</a>
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item8'
+							>
+								<div class="fixedFont heading" id="mkdir">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>mkdir</b>(path, mode, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronous mkdir(2). No arguments other than a possible exception are 
+given to the completion callback.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{String|octal}</span> <b>mode</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item9'
+							>
+								<div class="fixedFont heading" id="pwd">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>pwd</b>(callback)
+								</div>
+								
+								<div class="description">
+									Asynchronous pwd(1). The callback gets two arguments (err, path)
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item10'
+							>
+								<div class="fixedFont heading" id="readdir">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>readdir</b>(path, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronous readdir(3). Reads the contents of a directory. The callback 
+gets two arguments (err, files) where files is an array of the names of 
+the files in the directory excluding '.' and '..'.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item11'
+							>
+								<div class="fixedFont heading" id="readFile">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>readFile</b>(filename, encoding, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronously reads the entire contents of a file.
+The callback is passed two arguments (err, data), where data is the contents 
+of the file.
+If no encoding is specified, then the raw buffer is returned.
+Example:
+<pre class="code">
+sftp.readFile("/etc/passwd", function(err, data) {
+    if (err)
+        throw err;
+    console.log(data);
+});
+</pre>
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>filename</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>encoding</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item12'
+							>
+								<div class="fixedFont heading" id="rename">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>rename</b>(path1, path2, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronous rename(2). No arguments other than a possible exception are 
+given to the completion callback.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path1</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path2</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item13'
+							>
+								<div class="fixedFont heading" id="rmdir">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>rmdir</b>(path, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronous rmdir(2). No arguments other than a possible exception are 
+given to the completion callback.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item14'
+							>
+								<div class="fixedFont heading" id="stat">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>stat</b>(path, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronous lstat(2). The callback gets two arguments (err, stats) where 
+stats is a sftp.Stats object. lstat() is identical to stat(), except that if 
+path is a symbolic link, then the link itself is stat-ed, not the file that 
+it refers to.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item15'
+							>
+								<div class="fixedFont heading" id="symlink">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>symlink</b>(linkdata, path, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronous symlink(2). No arguments other than a possible exception are 
+given to the completion callback.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>linkdata</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item16'
+							>
+								<div class="fixedFont heading" id="unlink">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>unlink</b>(path, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronous unlink(2). No arguments other than a possible exception are 
+given to the completion callback.
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>path</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								<div class="hr"></div>
+							</li>
+						
+							<li 
+								 class='item17'
+							>
+								<div class="fixedFont heading" id="writeFile">
+									<span class='lighter'>
+									
+									</span>
+									
+									
+									
+									<b>writeFile</b>(filename, data, encoding, callback)
+								</div>
+								
+								<div class="description">
+									Asynchronously writes data to a file. data can be a string or a buffer.
+Example:
+<pre class="code">
+sftp.writeFile("message.txt", "Hello Node", function(err) {
+    if (err)
+        throw err;
+    console.log("It's saved!");
+});
+</pre>
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+									<dl class="detailList params">
+										<dt class="heading">Parameters:</dt>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>filename</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{String|Buffer}</span> <b>data</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{String}</span> <b>encoding</b>
+												
+											</dt>
+											<dd></dd>
+										
+											<dt>
+												<span class="light fixedFont">{Function}</span> <b>callback</b>
+												
+											</dt>
+											<dd></dd>
+										
+									</dl>
+								
+								
+								
+								
+							</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+		
+<!--
+#### EVENT DETAILS
+-->		
+		
+			<div class="details props">
+				<div class="innerProps">
+					<h2 class="sectionTitle">
+						Event Detail
+					</h2>
+					
+					
+						<div class="fixedFont heading" id="event:.event:connect">
+							<span class='lighter'>
+							&lt;static&gt; 
+							</span>
+							
+							
+							
+							<span class="light">Sftp.</span><b>connect</b>()
+						</div>
+						
+						<div class="description">
+							
+							
+							
+							
+							
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="event:.event:data">
+							<span class='lighter'>
+							&lt;static&gt; 
+							</span>
+							
+							
+							
+							<span class="light">Sftp.</span><b>data</b>(e)
+						</div>
+						
+						<div class="description">
+							
+							
+							
+							
+							
+						</div>
+						
+						
+						
+						
+							<dl class="detailList params">
+								<dt class="heading">Parameters:</dt>
+								
+									<dt>
+										<span class="light fixedFont">{String}</span> <b>e</b>
+										
+									</dt>
+									<dd>chunk of data that comes in while executing an Sftp command</dd>
+								
+							</dl>
+						
+						
+						
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="event:.event:disconnect">
+							<span class='lighter'>
+							&lt;static&gt; 
+							</span>
+							
+							
+							
+							<span class="light">Sftp.</span><b>disconnect</b>()
+						</div>
+						
+						<div class="description">
+							
+							
+							
+							
+							
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						<div class="hr"></div>
+					
+						<div class="fixedFont heading" id="event:.event:ready">
+							<span class='lighter'>
+							&lt;static&gt; 
+							</span>
+							
+							
+							
+							<span class="light">Sftp.</span><b>ready</b>()
+						</div>
+						
+						<div class="description">
+							
+							
+							
+							
+							
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						
+					
+				</div>
+			</div>
+		
+	</div>
+</div>
+		<script type="text/javascript">
+			wbos.CssTools.MediaQueryFallBack.LoadCss('../css/screen.css', '../css/handheld.css', 660)
+			codeview.classFilter.Init()
+		</script>
+	</body>
+</html>
+
