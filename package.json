@@ -1,7 +1,7 @@
 {
     "name": "node-sftp",
     "description": "A simple wrapper to establish ssh and sftp connections over NodeJS tty",
-    "version": "0.1",
+    "version": "0.1.1",
     "homepage" : "http://github.com/ajaxorg/node-sftp",
     "engines": {"node": ">= 0.4.0"},
     "author": "Mike de Boer <mike@c9.io>",
